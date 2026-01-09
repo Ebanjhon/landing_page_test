@@ -18,7 +18,7 @@ p {
   letter-spacing: normal;
 }
 
-.main_product-container{
+.main_product-container {
   display: flex;
   flex-direction: row;
   gap: 64px;
@@ -37,7 +37,7 @@ p {
     display: block;
   }
 
-  .main_product-container{
+  .main_product-container {
     flex-direction: column;
     gap: 16px;
   }
@@ -45,11 +45,23 @@ p {
 
 /* <!-- left content --> */
 /* mobile */
-.main_slick-list{
+.single-item {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: red;
 }
+
+.slide {
+  aspect-ratio: 1 / 1;
+  background: #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.slide-preview{
+  overflow: hidden;
+  margin: 8px 4px 0;
+  border-radius: 8px;
+}
+
 /* desktop */
 .product-nutrition-info {
   position: absolute;
@@ -92,6 +104,7 @@ p {
   font-weight: 400;
   margin: 16px 0px;
 }
+
 .product_badge {
   position: absolute;
   right: 16px;
@@ -99,6 +112,12 @@ p {
   width: 100%;
   max-width: 120px;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .product_badge {
+    max-width: 80px;
+  }
 }
 
 /* main product feature line */
