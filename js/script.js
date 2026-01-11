@@ -1,3 +1,4 @@
+// ===================== show more detail ==================
 function onProductTabClick(element) {
   element.classList.toggle('active');
 }
@@ -8,30 +9,31 @@ document.querySelectorAll('.product-tab-block').forEach(item => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.querySelector('.product-nutrition-info');
-  const popup = document.querySelector('.nutrition_popup-outer');
-  const content = popup.querySelector('.bg-white');
+// ======================== show popup =====================
+$(function () {
+  const $popup = $('.nutrition_popup-outer');
+  if (!$popup.length) return;
 
-  if (!btn || !popup) return;
-
-  btn.addEventListener('click', () => {
-    popup.classList.toggle('active');
+  $(document).on('click', '.product-nutrition-info', function (e) {
+    e.stopPropagation();
+    $popup.toggleClass('active');
   });
 
-  popup.addEventListener('click', () => {
-    popup.classList.remove('active');
+  $popup.on('click', function () {
+    $popup.removeClass('active');
   });
 
-  content.addEventListener('click', e => {
+  $popup.find('.bg-white').on('click', function (e) {
     e.stopPropagation();
   });
 });
 
-
 // ======================== slick-list =====================
 $(document).ready(function () {
-  $('.single-item').slick({
+  const $main = $('.single-item');
+  const $thumb = $('.multiple-items');
+
+  $main.slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     infinite: true,
@@ -40,13 +42,21 @@ $(document).ready(function () {
     asNavFor: '.multiple-items'
   });
 
-  $('.multiple-items').slick({
-    slidesToShow: 4,  
+  $thumb.slick({
+    slidesToShow: 4,
     slidesToScroll: 1,
     infinite: true,
     arrows: false,
     dots: false,
     asNavFor: '.single-item',
     focusOnSelect: true,
+  });
+
+  $('.btn-slick-left').on('click', function () {
+    $main.slick('slickPrev');
+  });
+
+  $('.btn-slick-right').on('click', function () {
+    $main.slick('slickNext');
   });
 });
