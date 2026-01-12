@@ -1,3 +1,41 @@
+const $main = $('.single-item');
+const $thumb = $('.multiple-items');
+
+$(document).ready(function () {
+  // slick-list
+  $main.slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    infinite: true,
+    arrows: false,
+    dots: false,
+    asNavFor: '.multiple-items'
+  });
+
+  $thumb.slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    infinite: true,
+    arrows: false,
+    dots: false,
+    asNavFor: '.single-item',
+    focusOnSelect: true,
+  });
+
+  $('.btn-slick-left').on('click', function () {
+    $main.slick('slickPrev');
+  });
+
+  $('.btn-slick-right').on('click', function () {
+    $main.slick('slickNext');
+  });
+
+  // show mortablele
+  $('.product-table-item').on('click', initShowProductTable);
+  $('.item-question').on('click', initShowAnswer);
+});
+
+
 // ===================== show more detail ==================
 function onProductTabClick(element) {
   element.classList.toggle('active');
@@ -28,35 +66,18 @@ $(function () {
   });
 });
 
-// ======================== slick-list =====================
-$(document).ready(function () {
-  const $main = $('.single-item');
-  const $thumb = $('.multiple-items');
+//======================= show more ====================
+function initShowProductTable() {
+  const $content = $(this).find('.product-table-content');
 
-  $main.slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: true,
-    arrows: false,
-    dots: false,
-    asNavFor: '.multiple-items'
-  });
+  if ($content.hasClass('active')) {
+    $content.removeClass('active');
+  } else {
+    $content[0].offsetHeight;
+    $content.addClass('active');
+  }
+}
 
-  $thumb.slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    infinite: true,
-    arrows: false,
-    dots: false,
-    asNavFor: '.single-item',
-    focusOnSelect: true,
-  });
-
-  $('.btn-slick-left').on('click', function () {
-    $main.slick('slickPrev');
-  });
-
-  $('.btn-slick-right').on('click', function () {
-    $main.slick('slickNext');
-  });
-});
+function initShowAnswer() {
+  $(this).toggleClass('active');
+}
